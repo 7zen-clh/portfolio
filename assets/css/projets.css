@@ -1,20 +1,17 @@
 /* projets.css - spécifique à la page Projets */
 
-/* Titre de section */
 .projets-section h2 {
   text-align: center;
   margin-bottom: 2rem;
   color: #1e1e2f;
 }
 
-/* Grille de projets */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
-/* Carte individuelle d’un projet */
 .project-card {
   background: #fff;
   padding: 1.5rem;
@@ -27,18 +24,37 @@
   transform: translateY(-5px);
 }
 
-/* Bouton de téléchargement */
-.download-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
-  background-color: #00bcd4;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background 0.3s ease;
+/* Aperçu PDF intégré */
+.pdf-preview {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ccc;
+  margin: 1rem 0;
+  border-radius: 8px;
 }
 
-.download-btn:hover {
-  background-color: #0097a7;
+/* Liste des fichiers à télécharger */
+.project-files h4 {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #1e1e2f;
+}
+
+.project-files ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.project-files li {
+  margin: 0.5rem 0;
+}
+
+.project-files a {
+  color: #00bcd4;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-files a:hover {
+  text-decoration: underline;
 }
