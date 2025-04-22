@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0d0d0d;
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  nav ul li i {
+    color: #888;
+    font-size: 1.5rem;
+    transition: 0.3s;
+  }
+  
+  nav ul li i:hover {
+    color: #fff;
+  }
+  
+  .hero {
+    text-align: center;
+    max-width: 800px;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+    border: 2px solid #333;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  
+  h1 span {
+    display: block;
+    font-weight: 300;
+    color: #aaa;
+  }
+  
+  .subtitle {
+    font-weight: 300;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #ccc;
+  }
+  
+  .status {
+    color: #00e676;
+    margin-bottom: 1.5rem;
+  }
+  
+  .green-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #00e676;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .socials a {
+    color: #ccc;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: 0.3s;
+  }
+  
+  .socials a:hover {
+    color: #fff;
+  }
+  
+  .cta-buttons {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: 0.3s;
+  }
+  
+  .btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+  }
+  
