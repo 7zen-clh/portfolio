@@ -26,12 +26,36 @@ main {
 }
 
 /* Footer */
-footer {
+.footer {
   text-align: center;
-  padding: 1.5rem;
-  background: #1e1e2f;
-  color: #fff;
-  margin-top: auto; /* Garantit que le footer reste en bas de la page */
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #1e1e2f; /* Bande bleue en fond */
+  color: white; /* Texte blanc sur le fond bleu */
+}
+
+.footer a {
+  color: white; /* Couleur du lien en blanc */
+  text-decoration: none; /* Enlever le soulignement */
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Aligner le texte et l'icône sur la même ligne */
+  gap: 8px; /* Espacement entre l'icône et le texte */
+  font-size: 1.2rem;
+}
+
+.footer a i {
+  font-size: 1.4rem; /* Taille de l'icône */
+}
+
+.footer a:hover {
+  color: #f4f4f4; /* Changer la couleur du texte au survol */
+  text-decoration: underline; /* Ajouter un soulignement au survol */
+}
+
+.footer a:hover i {
+  color: #f4f4f4; /* Changer la couleur de l'icône au survol */
 }
 
 /* Sections générales */
