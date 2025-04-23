@@ -5,44 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Mes Projets - Mon Portfolio</title>
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/projets.css" />
+    <link rel="stylesheet" href="../assets/css/contact.css" />
     <link rel="stylesheet" href="../assets/css/navbar.css" />
   </head>
-<body>
-  <header>
-    <nav class="navbar">
-      <div class="logo"><a href="../index.html">Mon Portfolio</a></div>
-      <ul class="nav-links">
-        <li><a href="../index.html" class="nav-item">Accueil</a></li>
-        <li><a href="/pages/projets.html" class="nav-item">Projets</a></li>
-        <li><a href="/pages/profil.html" class="nav-item">Profil</a></li>
-        <li><a href="/pages/parcours.html" class="nav-item">Parcours</a></li>
-        <li><a href="/pages/contact.html" class="nav-item">Contact</a></li>
-      </ul>
-      <div class="burger">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </nav>
-  </header>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo"><a href="../index.html">Mon Portfolio</a></div>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-item">Accueil</a></li>
+          <li><a href="/pages/projets.html" class="nav-item">Projets</a></li>
+          <li><a href="/pages/profil.html" class="nav-item">Profil</a></li>
+          <li><a href="/pages/parcours.html" class="nav-item">Parcours</a></li>
+          <li><a href="/pages/contact.html" class="nav-item">Contact</a></li>
+        </ul>
+        <div class="burger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </nav>
+    </header>
 
-  <main>
-    <section class="section contact-section">
-      <h2>Contactez-moi</h2>
-      <form action="#" method="post" class="contact-form">
-        <input type="text" placeholder="Nom" required />
-        <input type="email" placeholder="Email" required />
-        <textarea placeholder="Votre message" required></textarea>
-        <button type="submit">Envoyer</button>
-      </form>
-    </section>
-  </main>
+    <main>
+      <section class="section contact-section">
+        <h2>Contactez-moi</h2>
+        <!-- Formulaire de contact intégré avec Formspree -->
+        <form action="https://formspree.io/f/mrbqglkd" method="POST" class="contact-form">
+          <div class="input-group">
+            <input type="text" name="nom" required placeholder=" " />
+            <label>Nom</label>
+          </div>
+          <div class="input-group">
+            <input type="email" name="email" required placeholder=" " />
+            <label>Email</label>
+          </div>
+          <div class="input-group">
+            <textarea name="message" required placeholder=" "></textarea>
+            <label>Votre message</label>
+          </div>
+          <button type="submit" class="submit-btn">Envoyer</button>
+        </form>
+      </section>
+    </main>
 
-  <footer>
-    <p>&copy; 2025 tomc.fr Tous droits réservés.</p>
-  </footer>
+    <footer>
+      <p>&copy; 2025 tomc.fr Tous droits réservés.</p>
+    </footer>
 
-  <script src="../assets/js/script.js"></script>
-</body>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/contact.js"></script>
+
+  </body>
 </html>

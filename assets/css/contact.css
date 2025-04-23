@@ -1,46 +1,134 @@
-/* contact.css - spécifique à la page Contact */
+/* contact.css - formulaire stylisé, dynamique et animé */
+
+.contact-section {
+  padding: 4rem 2rem;
+  max-width: 700px;
+  margin: 4rem auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animation au hover */
+.contact-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 123, 255, 0.2);
+}
 
 .contact-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #1e1e2f;
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #1e1e2f;
+}
+
+/* Formulaire dynamique */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Champs de formulaire avec labels flottants */
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 1.2rem 1rem 0.8rem;
+  font-size: 1rem;
+  background: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-group label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1rem;
+  color: #999;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #007BFF;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 12px;
+  background: #fff;
+  padding: 0 5px;
+  font-size: 0.8rem;
+  color: #007BFF;
+}
+
+/* Zone de texte dynamique */
+textarea {
+  min-height: 150px;
+  resize: none; /* On enlève l'encoche */
+  overflow-y: hidden;
+}
+
+/* Bouton stylisé */
+.submit-btn {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #1e1e2f, #33334d);
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #2a2a40, #44445e);
+  transform: translateY(-2px);
+}
+
+/* Animation d'entrée depuis le haut */
+@keyframes slideFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
   }
-  
-  .contact-form {
-    max-width: 600px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .contact-form input,
-  .contact-form textarea {
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  .contact-form button {
-    padding: 0.8rem;
-    background-color: #00bcd4;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-  }
-  
-  .contact-form button:hover {
-    background-color: #0097a7;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .contact-form input,
-    .contact-form textarea {
-      font-size: 1rem;
-    }
-  }
-  
+}
+
+.contact-section {
+  padding: 4rem 2rem;
+  max-width: 700px;
+  margin: 4rem auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Animation au chargement */
+  animation: slideFromTop 0.8s ease-out both;
+}
+
+/* Animation au hover */
+.contact-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 123, 255, 0.2);
+}
+
