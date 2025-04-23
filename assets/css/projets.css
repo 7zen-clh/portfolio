@@ -1,17 +1,71 @@
-/* projets.css - spécifique à la page Projets */
-
-.projets-section h2 {
+/* Style pour la barre de recherche */
+.search-container {
+  margin: 3rem auto 2rem auto;
   text-align: center;
-  margin-bottom: 2rem;
-  color: #1e1e2f;
+  max-width: 600px;
+  width: 100%;
 }
 
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 18px;
+  border: 2px solid #ddd;
+  border-radius: 30px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #007BFF;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Placeholder style */
+.search-input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Effet au survol du champ de recherche */
+.search-input:hover {
+  border-color: #007BFF;
+}
+
+.search-input {
+  padding-left: 40px; /* Espace pour l'icône */
+}
+
+/* Ajout d'une animation au focus sur la barre */
+.search-container .search-input:focus {
+  transition: all 0.3s ease;
+  border-color: #007BFF;
+}
+
+/* Style pour les projets */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  justify-items: center;
 }
 
+/* Centrage et flexbox pour les projets filtrés */
+.projects-grid-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Style pour la carte des projets */
 .project-card {
   background: #fff;
   padding: 1.5rem;
