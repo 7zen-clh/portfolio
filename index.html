@@ -47,6 +47,22 @@
     </section>
   </main>
 
+  <!-- Carte veille informatique -->
+  <div class="card-container">
+    <div class="card">
+      <p class="card-text">Découvrez ma veille sur la cybersécurité et les nouvelles technologies.</p>
+      <a href="#" class="btn-card" onclick="redirectToVeille()">Y aller</a>
+    </div>
+  </div>
+  
+  <script>
+    function redirectToVeille() {
+      sessionStorage.setItem("redirectTo", "veille");
+      window.location.href = "/pages/chargement.html";
+    }
+  </script>
+
+
   <footer>
     <p>&copy; tomc.fr Tous droits réservés.</p>
   </footer>

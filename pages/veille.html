@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veille Informatique</title>
+  <link rel="stylesheet" href="../assets/css/veille.css" />
+</head>
+<body>
+  <button id="themeToggle">🌙</button>
+
+  <main class="veille-container">
+    <h1>Veille Informatique - ANSSI</h1>
+    <div id="articles" class="articles"></div>
+  </main>
+
+
+<!-- Carte retour à l'accueil -->
+<div class="card-container">
+  <div class="card">
+    <p class="card-text">Retourner à l'accueil du portfolio.</p>
+    <a href="#" class="btn-card" onclick="redirectToAccueil()">Y aller</a>
+  </div>
+</div>
+
+<script>
+  function redirectToAccueil() {
+    sessionStorage.setItem("redirectTo", "index");
+    window.location.href = "/pages/chargement.html";
+  }
+</script>
+
+<p class="footer">&copy; 2025 tomc.fr</p>
+
+
+  <script src="../assets/js/rss.js"></script>
+  <script src="../assets/js/dark.js"></script>
+</body>
+</html>

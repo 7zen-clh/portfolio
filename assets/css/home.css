@@ -108,3 +108,50 @@
     animation: slideFromLeft 0.8s ease-out both;
     animation-delay: 0.3s;
   }
+
+/* Carte flottante en bas à droite */
+.card-container {
+  position: fixed;
+  bottom: 100px; /* Ajusté pour ne pas chevaucher le footer */
+  right: 20px;
+  width: 270px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 9999;
+}
+
+/* Texte dans la carte */
+.card-text {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+/* Bouton dans la carte */
+.btn-card {
+  align-self: flex-start;
+  padding: 0.6rem 1.2rem;
+  background-color: #1e1e2f;
+  color: white;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-card:hover {
+  background-color: #1e1e2f;
+  transform: translateY(-2px);
+}
+
+.btn-card:active {
+  transform: scale(0.97);
+}
+

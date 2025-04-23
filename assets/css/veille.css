@@ -1,0 +1,190 @@
+/* Style de base */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+  color: #111;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Mode sombre */
+body.dark {
+  background-color: #111;
+  color: #fff;
+}
+
+/* Titre de la page */
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #111;
+  font-weight: normal; 
+}
+
+/* Mode sombre : changement du titre en blanc */
+body.dark h1 {
+  color: #fff;
+}
+
+/* Conteneur principal de la veille */
+.veille-container {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+/* Conteneur des articles */
+.articles {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 colonnes */
+  gap: 1rem; /* Réduit l'espacement entre les articles */
+  padding: 1rem;
+}
+
+/* Style des cartes d'articles */
+.article {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #f9f9f9;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+/* Effet au survol des articles */
+.article:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre des articles */
+.article h2 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #111;
+  font-weight: normal;
+  text-align: left;
+}
+
+/* Description des articles */
+.article p {
+  font-size: 0.85rem;
+  color: #444;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  font-weight: normal;
+  text-align: left;
+  max-height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Style de la date de publication */
+.article .pubDate {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.5rem;
+  font-weight: normal;
+  text-align: left;
+  display: block; /* S'assurer que la date est bien un bloc */
+  background-color: yellow; /* Temporarily, pour mieux la voir */
+}
+
+/* Lien des articles */
+.article a {
+  display: inline-block;
+  margin-top: 0.8rem;
+  color: #111;
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.article a:hover {
+  color: #333;
+}
+
+/* Carte flottante dynamique en bas à droite */
+.card-container {
+  position: fixed;
+  bottom: 20px; /* Plus proche du bas */
+  right: 20px; /* Plus proche du côté droit */
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 0.8rem 1rem; /* Moins de padding pour un design plus compact */
+  display: flex;
+  align-items: center; /* Aligner verticalement le texte et le bouton */
+  gap: 0.8rem; /* Espacement entre le texte et le bouton */
+  z-index: 9999;
+  width: auto; /* Auto pour la taille de la carte */
+}
+
+/* Effet de survol de la carte */
+.card-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Texte dans la carte */
+.card-text {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0; /* Retirer l'espacement sous le texte */
+  line-height: 1.4;
+  font-weight: normal;
+  white-space: nowrap; /* Empêche le texte de se couper */
+}
+
+/* Bouton dynamique dans la carte - noir avec texte */
+.btn-card {
+  padding: 0.8rem; /* Moins de padding pour un bouton plus petit */
+  background-color: #111; /* Bouton noir */
+  color: white;
+  border-radius: 5px; /* Bouton carré avec bords légèrement arrondis */
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-block;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Effet de survol du bouton */
+.btn-card:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+/* Effet lorsque le bouton est cliqué */
+.btn-card:active {
+  transform: scale(0.97);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: normal;
+}
+
+/* Bouton de changement de thème */
+#themeToggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #111;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 100;
+}
+
+body.dark #themeToggle {
+  color: #fff;
+}
