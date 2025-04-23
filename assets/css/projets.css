@@ -139,5 +139,5 @@
 /* Animation au survol */
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 40px rgba(0, 123, 255, 0.2);
 }

@@ -18,3 +18,93 @@
     color: #555;
   }
   
+  .home-buttons {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn-home {
+    position: relative;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    border: 2px solid transparent;
+    text-decoration: none;
+  }
+  
+  /* Bouton plein */
+  .btn-home.filled {
+    background: linear-gradient(135deg, #1e1e2f, #33334d);
+    color: white;
+    border-color: transparent;
+  }
+  
+  .btn-home.filled::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #44445e;
+    z-index: -1;
+    transition: transform 0.4s ease;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  
+  .btn-home.filled:hover::after {
+    transform: scaleX(1);
+  }
+  
+  .btn-home.filled:hover {
+    color: #fff;
+  }
+  
+  /* Bouton transparent */
+  .btn-home.outlined {
+    background: transparent;
+    color: #1e1e2f;
+    border: 2px solid #1e1e2f;
+  }
+  
+  .btn-home.outlined::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #1e1e2f;
+    z-index: -1;
+    transition: transform 0.4s ease;
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+  
+  .btn-home.outlined:hover::after {
+    transform: scaleX(1);
+  }
+  
+  .btn-home.outlined:hover {
+    color: #fff;
+    border-color: #1e1e2f;
+  }
+  
+  @keyframes slideFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .home-section h1 {
+    animation: slideFromLeft 0.8s ease-out both;
+    animation-delay: 0.3s;
+  }

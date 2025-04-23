@@ -1,76 +1,92 @@
+/* Animation du logo uniquement */
+@keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* Navbar */
 .navbar {
-    background: #1e1e2f; /* Fond sombre */
-    color: #fff;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .navbar .logo a {
-    color: #fff;
-    font-size: 1.8rem;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
+  background: #1e1e2f;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo animé */
+.navbar .logo a {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  animation: slideFromLeft 0.8s ease-out both;
+}
+
+/* Liens de navigation */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links .nav-item {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s, border-bottom 0.3s ease-in-out;
+}
+
+/* Effet hover */
+.nav-links .nav-item:hover {
+  color: #00bcd4;
+  border-bottom: 2px solid #00bcd4;
+}
+
+/* Burger menu pour mobile */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-  }
-  
-  .nav-links .nav-item {
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-decoration: none;
-    color: #fff;
-    position: relative;
-    padding-bottom: 4px; /* Ajout d'un espace sous le texte */
-    transition: color 0.3s, border-bottom 0.3s ease-in-out;
-  }
-  
-  .nav-links .nav-item:hover {
-    color: #00bcd4; /* Changer la couleur au survol */
-    border-bottom: 2px solid #00bcd4; /* Souligner le lien au survol */
-  }
-  
-  /* Burger menu pour mobile */
-  .burger {
-    display: none;
     flex-direction: column;
-    cursor: pointer;
-    gap: 5px;
+    display: none;
+    gap: 1rem;
+    width: 100%;
+    background: #1e1e2f;
+    padding: 1rem 0;
   }
-  
-  .burger div {
-    width: 25px;
-    height: 3px;
-    background-color: #fff;
+
+  .nav-links.active {
+    display: flex;
   }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .nav-links {
-      flex-direction: column;
-      display: none;
-      gap: 1rem;
-      width: 100%;
-      background: #1e1e2f;
-      padding: 1rem 0;
-    }
-  
-    .nav-links.active {
-      display: flex;
-    }
-  
-    .burger {
-      display: flex;
-    }
+
+  .burger {
+    display: flex;
   }
-  
+}

@@ -1,34 +1,208 @@
-/* parcours.css - spécifique à la page Parcours */
+/* Section parcours */
+.parcours-section {
+  padding: 4rem 2rem;
+  position: relative;
+}
 
-.parcours-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #1e1e2f;
+.timeline {
+  position: relative;
+  margin: 3rem auto;
+  padding: 2rem 0;
+  max-width: 900px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #1e1e2f;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  width: 45%;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  width: 20px;
+  height: 20px;
+  background: #1e1e2f;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+  animation: slideFromLeft 1s ease-out forwards;
+}
+
+.timeline-item.left::after {
+  right: -10px;
+}
+
+.timeline-item.right {
+  left: 55%;
+  text-align: left;
+  animation: slideFromRight 1s ease-out forwards;
+}
+
+.timeline-item.right::after {
+  left: -10px;
+}
+
+.timeline-content {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.timeline-item.left .timeline-content {
+  animation-name: slideFromLeftContent;
+}
+
+.timeline-item.right .timeline-content {
+  animation-name: slideFromRightContent;
+}
+
+.timeline-item:hover .timeline-content::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Overlay au survol */
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transform: scale(1.1);
+  z-index: 0; /* Mettre l'overlay derrière les autres éléments */
+}
+
+/* Style du bouton "Voir le rapport de stage" */
+.btn-rapport {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: #1e1e2f;  /* Couleur du bouton */
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: background 0.3s, transform 0.2s ease;
+  margin-top: 1rem;
+  cursor: pointer; /* Ajoute le curseur de clic */
+  position: relative;
+  z-index: 1; /* Met le bouton au-dessus de l'overlay */
+}
+
+.btn-rapport:hover {
+  background: #1e1e2f; /* Couleur au survol */
+  transform: scale(1.05);
+}
+
+.btn-rapport:focus {
+  outline: none;
+}
+
+/* Animations */
+@keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
   }
-  
-  .parcours-content {
-    max-width: 800px;
-    margin: auto;
-    font-size: 1.1rem;
-    color: #555;
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  .parcours-content h3 {
-    margin-top: 1.5rem;
-    font-size: 1.5rem;
-    color: #00bcd4;
+}
+
+@keyframes slideFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
   }
-  
-  .parcours-content p {
-    line-height: 1.6;
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  /* Responsive */
-  @media (min-width: 768px) {
-    .parcours-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
+}
+
+@keyframes slideFromLeftContent {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
   }
-  
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRightContent {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 0;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0;
+    text-align: left;
+  }
+
+  .timeline-item::after {
+    left: 0;
+  }
+}

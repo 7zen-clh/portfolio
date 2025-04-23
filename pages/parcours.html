@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Mes Projets - Mon Portfolio</title>
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/projets.css" />
-    <link rel="stylesheet" href="../assets/css/navbar.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parcours - Mon Portfolio</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/navbar.css" />
+  <link rel="stylesheet" href="../assets/css/parcours.css" />
+</head>
 <body>
   <header>
     <nav class="navbar">
@@ -20,9 +20,7 @@
         <li><a href="/pages/contact.html" class="nav-item">Contact</a></li>
       </ul>
       <div class="burger">
-        <div></div>
-        <div></div>
-        <div></div>
+        <div></div><div></div><div></div>
       </div>
     </nav>
   </header>
@@ -30,12 +28,63 @@
   <main>
     <section class="section parcours-section">
       <h2>Mon Parcours</h2>
-      <div class="parcours-content">
-        <h3>Formation</h3>
-        <p>J'ai étudié dans le domaine du développement web et de la programmation, en suivant plusieurs formations spécialisées.</p>
+      <div class="timeline">
+        <!-- Bachelor Cybersécurité -->
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>2025 - 2026 : Bachelor Cybersécurité & Ethical Hacking - Efrei</h3>
+            <p>Formation en cybersécurité et hacking éthique, développement des compétences pratiques et théoriques dans la protection des systèmes.</p>
+          </div>
+        </div>
 
-        <h3>Expérience professionnelle</h3>
-        <p>J'ai travaillé sur divers projets freelance et en entreprise, où j'ai acquis de l'expérience en développement frontend et backend.</p>
+        <!-- BTS SIO -->
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>2023 - 2025 : BTS SIO - St Paul Bourdon Blanc</h3>
+            <p>Formation en Systèmes Informatiques et Réseaux, spécialisée en administration réseau et gestion de projet informatique.</p>
+          </div>
+        </div>
+
+        <!-- Stage Mairie Fleury-les-Aubrais -->
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Fév - Mars 2025 : Mairie de Fleury-les-Aubrais</h3>
+            <p>Mise en place de WSUS/MDT, gestion de GPO, GLPI, et gestion de tickets de support.</p>
+            <a href="../assets/pdf/CV Tom COELHO.pdf" class="btn-rapport" target="_blank">Voir le rapport de stage</a>
+          </div>
+        </div>
+
+        <!-- Stage Mr Bricolage -->
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Mai - Juin 2024 : Mr Bricolage</h3>
+            <p>Assistance, maintenance informatique et rédaction de documentation technique.</p>
+          </div>
+        </div>
+
+         <!-- Vendeur Poissonnerie BAC -->
+         <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Déc 2020 - 2023 : BAC Général</h3>
+            <p>Spécialités : Mathématiques et NSI (Numérique et Sciences Informatique)</p>
+          </div>
+        </div>
+
+        <!-- Vendeur Poissonnerie Leclerc -->
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Déc 2022 - 2024 : Vendeur poissonnerie - Leclerc</h3>
+            <p>Gestion de la vente de produits alimentaires, service à la clientèle et gestion des stocks.</p>
+          </div>
+        </div>
+
+        <!-- Préparateur de Commandes Disval -->
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Été 2021 - 2024 : Préparateur de commandes - Disval</h3>
+            <p>Préparation des commandes pour les clients, gestion des stocks et logistique.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
