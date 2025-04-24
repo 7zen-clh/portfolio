@@ -1,63 +1,47 @@
-// /api/upload.js
-import formidable from 'formidable';
-import AWS from 'aws-sdk';
+import { IncomingForm } from 'formidable';
 import fs from 'fs';
 
+// Assurez-vous que votre fonction est compatible avec l'environnement serverless (par exemple, Vercel)
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: false,  // Désactive le parsing par défaut de Vercel pour gérer les fichiers
   },
 };
 
-// Configuration AWS S3
-const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION,
-});
+export default function handler(req, res) {
+  // Vérifie que la méthode est POST (pour un envoi de formulaire)
+  if (req.method === 'POST') {
+    const form = new IncomingForm();
 
-export default async function handler(req, res) {
-  try {
-    if (req.method !== 'POST') {
-      return res.status(405).json({ error: 'Méthode non autorisée' });
-    }
+    form.uploadDir = './public/uploads'; // Spécifiez le répertoire d'upload
+    form.keepExtensions = true; // Garder les extensions de fichier
 
-    // parser le multipart/form-data
-    const form = new formidable.IncomingForm({ keepExtensions: true });
-    const { files } = await new Promise((resolve, reject) => {
-      form.parse(req, (err, fields, files) => {
-        if (err) return reject(err);
-        resolve({ fields, files });
-      });
+    // Gérer les erreurs de parsing
+    form.on('error', (err) => {
+      console.error('Erreur lors du parsing du formulaire', err);
+      res.status(500).json({ error: 'Erreur interne du serveur' });
     });
 
-    // formulaire sans fichier ?    
-    if (!files || !files.document) {
-      return res.status(400).json({ error: 'Aucun fichier reçu' });
-    }
+    // Lorsque le formulaire est complètement parsé
+    form.on('end', () => {
+      console.log('Upload terminé');
+    });
 
-    // formidable peut retourner un seul fichier ou un tableau
-    const file = Array.isArray(files.document)
-      ? files.document[0]
-      : files.document;
+    // Parse les données du formulaire
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        console.error('Erreur de parsing:', err);
+        return res.status(500).json({ error: 'Erreur lors de l\'upload du fichier' });
+      }
 
-    // lit le fichier temporaire
-    const fileStream = fs.createReadStream(file.filepath);
+      // Traitez les fichiers ici
+      console.log('Fichiers reçus:', files);
 
-    const params = {
-      Bucket: 'mon-projet-iuto-bucket',
-      Key: file.originalFilename,
-      Body: fileStream,
-      ContentType: file.mimetype || 'application/octet-stream',
-    };
-
-    // upload vers S3
-    const data = await s3.upload(params).promise();
-    return res.status(200).json({ message: 'Fichier uploadé !', url: data.Location });
-
-  } catch (err) {
-    // log complet pour debug dans Vercel
-    console.error('API /api/upload ERROR:', err);
-    return res.status(500).json({ error: 'Erreur interne du serveur', details: err.message });
+      // Répondre avec succès
+      res.status(200).json({ message: 'Fichier téléchargé avec succès', files });
+    });
+  } else {
+    // Méthode non autorisée
+    res.status(405).json({ error: 'Méthode non autorisée' });
   }
 }
