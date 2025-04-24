@@ -48,7 +48,6 @@
     <p>© 2025 tomc.fr | <a href="https://www.linkedin.com/in/tom-coelho-b38b97348" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
   </footer>
 
-  <!-- JavaScript pour gérer l'upload et la confirmation -->
   <script>
     const form = document.getElementById('upload-form');
     const uploadSuccess = document.getElementById('upload-success');
@@ -65,12 +64,12 @@
         return;
       }
 
-      // Créer un FormData pour envoyer le fichier à l'API (upload.js backend)
+      // Créer un FormData pour envoyer le fichier à l'API
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('document', file);
 
       try {
-        // Envoi du fichier à l'API serverless
+        // Envoi du fichier à l'API Vercel
         const response = await fetch('/api/upload', {
           method: 'POST',
           body: formData
