@@ -34,6 +34,7 @@
     <h1>Projet IUTO</h1>
     <p>Retrouvez ici l'organisation de mon projet avec les documents associés et le planning.</p>
 
+    <!-- Dossiers avec liens -->
     <div class="folders">
       <div class="folder">
         <i class="fas fa-folder"></i>
@@ -66,20 +67,40 @@
       </div>
     </div>
 
-    <form action="/api/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="document" required />
-        <button type="submit">Envoyer</button>
-    </form>
-      
-      
-    
-
+    <!-- Formulaire d'upload -->
+    <div class="upload-section">
+      <h2>Envoyer un document</h2>
+      <form action="/api/upload" method="POST" enctype="multipart/form-data">
+        <label for="document" class="upload-label">Choisissez un fichier :</label>
+        <input type="file" name="document" id="document" required />
+        <button type="submit" class="upload-button">Envoyer</button>
+      </form>
+      <!-- Message de confirmation (affiché après l'upload) -->
+      <div id="upload-success" style="display:none;">
+        <p class="success-message">Fichier téléchargé avec succès !</p>
+      </div>
+    </div>
   </main>
 
   <footer class="footer">
     <p>© 2025 tomc.fr | <a href="https://www.linkedin.com/in/tom-coelho-b38b97348" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
   </footer>
 
+  <!-- JavaScript pour gérer l'upload et la confirmation -->
+  <script>
+    const form = document.querySelector('form');
+    const uploadSuccess = document.getElementById('upload-success');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Empêche l'envoi immédiat du formulaire
+      // Simulation de l'envoi de fichier
+      setTimeout(function() {
+        uploadSuccess.style.display = 'block'; // Affiche le message de succès
+        form.reset(); // Réinitialise le formulaire après l'upload
+      }, 1000); // Délai pour simuler l'envoi
+    });
+  </script>
+  
   <script src="../assets/js/script.js"></script>
 </body>
 </html>
