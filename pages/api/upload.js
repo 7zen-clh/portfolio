@@ -1,42 +1,46 @@
-// api/upload.js
-const AWS = require('aws-sdk');
-const formidable = require('formidable');
-const fs = require('fs');
+// pages/api/upload.js
+import formidable from 'formidable';
+import { S3 } from 'aws-sdk';
 
-// Configurer AWS avec tes informations d'identification
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+const s3 = new S3({
   region: 'eu-north-1', // Ta région AWS
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
-const s3 = new AWS.S3();
-
-module.exports = (req, res) => {
-  const form = new formidable.IncomingForm();
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      return res.status(500).json({ error: 'Erreur lors de l\'upload' });
-    }
-
-    // Récupérer le fichier téléchargé
-    const file = files.document[0];
-    
-    // Préparer les paramètres pour l'upload S3
-    const params = {
-      Bucket: 'mon-projet-iuto-bucket',  // Nom du bucket S3
-      Key: `uploads/${file.originalFilename}`,  // Dossier + nom du fichier
-      Body: fs.createReadStream(file.filepath),  // Lire le fichier téléchargé
-      ContentType: file.mimetype,  // Type MIME du fichier
-      ACL: 'public-read',  // Les fichiers seront publics
-    };
-
-    // Télécharger le fichier vers S3
-    s3.upload(params, (err, data) => {
-      if (err) {
-        return res.status(500).json({ error: 'Erreur lors du téléchargement vers S3' });
-      }
-      return res.status(200).json({ message: 'Fichier téléchargé avec succès', data });
-    });
-  });
+export const config = {
+  api: {
+    bodyParser: false, // Désactiver le body parser pour utiliser formidable
+  },
 };
+
+export default function handler(req, res) {
+  if (req.method === 'POST') {
+    const form = new formidable.IncomingForm();
+    form.parse(req, async (err, fields, files) => {
+      if (err) {
+        return res.status(500).json({ error: 'Erreur de parsing' });
+      }
+
+      const file = files.document[0]; // Assurez-vous que 'document' est bien le champ du formulaire
+
+      // Préparer les paramètres S3
+      const params = {
+        Bucket: 'mon-projet-iuto-bucket',
+        Key: `uploads/${file.originalFilename}`,
+        Body: file.filepath,
+        ContentType: file.mimetype,
+        ACL: 'public-read',
+      };
+
+      try {
+        const uploadResponse = await s3.upload(params).promise();
+        res.status(200).json({ message: 'Fichier téléchargé avec succès', data: uploadResponse });
+      } catch (err) {
+        res.status(500).json({ error: 'Erreur lors du téléchargement', details: err });
+      }
+    });
+  } else {
+    res.status(405).json({ error: 'Méthode non autorisée' });
+  }
+}

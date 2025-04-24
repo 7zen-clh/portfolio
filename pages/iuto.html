@@ -49,43 +49,45 @@
   </footer>
 
   <script>
-    const form = document.getElementById('upload-form');
-    const uploadSuccess = document.getElementById('upload-success');
-    
-    form.addEventListener('submit', async function(event) {
-      event.preventDefault(); // Empêche l'envoi immédiat du formulaire
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('upload-form');
+      const uploadSuccess = document.getElementById('upload-success');
+      
+      form.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Empêche l'envoi immédiat du formulaire
 
-      // Récupérer le fichier
-      const file = document.getElementById('document').files[0];
+        // Récupérer le fichier
+        const file = document.getElementById('document').files[0];
 
-      // Vérifier si un fichier est sélectionné
-      if (!file) {
-        alert("Veuillez sélectionner un fichier.");
-        return;
-      }
-
-      // Créer un FormData pour envoyer le fichier à l'API
-      const formData = new FormData();
-      formData.append('document', file);
-
-      try {
-        // Envoi du fichier à l'API Vercel
-        const response = await fetch('/api/upload', {
-          method: 'POST',
-          body: formData
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-          console.log('Fichier téléchargé avec succès !', result);
-          uploadSuccess.style.display = 'block';  // Affiche le message de succès
-          form.reset();  // Réinitialise le formulaire après l'upload
-        } else {
-          console.error('Erreur lors du téléchargement:', result.error);
+        // Vérifier si un fichier est sélectionné
+        if (!file) {
+          alert("Veuillez sélectionner un fichier.");
+          return;
         }
-      } catch (error) {
-        console.error('Erreur de requête:', error);
-      }
+
+        // Créer un FormData pour envoyer le fichier à l'API
+        const formData = new FormData();
+        formData.append('document', file);
+
+        try {
+          // Envoi du fichier à l'API Vercel
+          const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+          });
+
+          const result = await response.json();
+          if (response.ok) {
+            console.log('Fichier téléchargé avec succès !', result);
+            uploadSuccess.style.display = 'block';  // Affiche le message de succès
+            form.reset();  // Réinitialise le formulaire après l'upload
+          } else {
+            console.error('Erreur lors du téléchargement:', result.error);
+          }
+        } catch (error) {
+          console.error('Erreur de requête:', error);
+        }
+      });
     });
   </script>
 
