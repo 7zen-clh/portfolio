@@ -1,0 +1,15 @@
+{
+    "builds": [
+      {
+        "src": "src/index.js",
+        "use": "@vercel/static-build"
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/react-coming-soon",
+        "destination": "/index.html"
+      }
+    ]
+  }
+  
