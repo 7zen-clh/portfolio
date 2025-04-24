@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1692.0",
+    "formidable": "^3.5.4"
+  }
+}
