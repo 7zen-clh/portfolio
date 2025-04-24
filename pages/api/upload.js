@@ -1,43 +1,35 @@
-// Configuration d'AWS SDK avec tes informations d'identification
-AWS.config.update({
-  region: 'eu-north-1', // Remplace avec ta région S3
-  accessKeyId: 'AKIATGXTDEY3RRRZ2N2E', // Remplace avec ta clé d'accès AWS
-  secretAccessKey: 'xsOwhttA016Qgdp+rb6h2jobgywTMXs2RUUFzoiM' // Remplace avec ta clé secrète AWS
+const AWS = require('aws-sdk');
+
+// Initialisation de S3 avec tes variables d'environnement
+const s3 = new AWS.S3({
+  region: 'eu-north-1', // Remplace par ta région
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
 
-// Initialisation de l'objet S3
-const s3 = new AWS.S3();
+module.exports = async (req, res) => {
+  if (req.method === 'POST') {
+    try {
+      const { file, filename } = req.body; // Assure-toi que tu envoies bien ces données
 
-// Fonction d'upload du fichier
-function uploadFile(event) {
-  event.preventDefault(); // Empêche l'envoi immédiat du formulaire
+      const params = {
+        Bucket: 'mon-projet-iuto-bucket',
+        Key: `assets/pdf/iuto/${filename}`,
+        Body: file,
+        ContentType: 'application/pdf',
+        ACL: 'public-read', // Ou une autre option d'ACL selon ton besoin
+      };
 
-  // Récupère le fichier sélectionné
-  const file = document.getElementById('document').files[0];
-  if (!file) {
-    alert('Veuillez choisir un fichier.');
-    return;
-  }
+      // Upload du fichier vers S3
+      const data = await s3.upload(params).promise();
 
-  // Paramètres d'upload
-  const params = {
-    Bucket: 'mon-projet-iuto-bucket', // Remplace avec le nom de ton bucket S3
-    Key: `iuto/${file.name}`, // Le chemin du fichier dans ton bucket
-    Body: file, // Le fichier lui-même
-    ACL: 'public-read' // Permission publique pour que le fichier soit accessible
-  };
-
-  // Upload du fichier
-  s3.upload(params, function(err, data) {
-    if (err) {
-      console.error('Erreur lors de l\'upload :', err);
-      alert('Erreur lors de l\'upload.');
-    } else {
-      console.log('Fichier téléchargé avec succès :', data.Location);
-      alert('Fichier téléchargé avec succès !');
+      // Réponse avec l'URL du fichier
+      return res.status(200).json({ message: 'Fichier téléchargé avec succès', url: data.Location });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Erreur lors de l\'upload du fichier' });
     }
-  });
-}
-
-// Attacher la fonction d'upload à l'événement de soumission du formulaire
-document.querySelector('form').addEventListener('submit', uploadFile);
+  } else {
+    res.status(405).json({ error: 'Méthode non autorisée' });
+  }
+};

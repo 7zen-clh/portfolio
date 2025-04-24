@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="../assets/css/iuto.css" />
   <link rel="stylesheet" href="../assets/css/navbar.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
-  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1265.0.min.js"></script>
 </head>
 
 <body>
@@ -42,25 +41,21 @@
         <span>1. LAN</span>
         <a href="../assets/pdf/iuto/1. LAN/" target="_blank">Ouvrir</a>
       </div>
-
       <div class="folder">
         <i class="fas fa-folder"></i>
         <span>2. Hyper-V</span>
-        <a href="../assets/pdf/iuto/2. Hyper -V/" target="_blank">Ouvrir</a>
+        <a href="../assets/pdf/iuto/2. Hyper-V/" target="_blank">Ouvrir</a>
       </div>
-
       <div class="folder">
         <i class="fas fa-folder"></i>
         <span>3. Stormshield</span>
         <a href="../assets/pdf/iuto/3. Stormshield/" target="_blank">Ouvrir</a>
       </div>
-
       <div class="folder">
         <i class="fas fa-trash"></i>
         <span>Corbeille</span>
         <a href="../assets/pdf/iuto/Corbeille" target="_blank">Ouvrir</a>
       </div>
-
       <div class="folder">
         <i class="fas fa-calendar-alt"></i>
         <span>Planning</span>
@@ -87,12 +82,11 @@
     <p>© 2025 tomc.fr | <a href="https://www.linkedin.com/in/tom-coelho-b38b97348" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
   </footer>
 
-  <!-- JavaScript pour gérer l'upload et la confirmation -->
   <script>
     const form = document.getElementById('upload-form');
     const uploadSuccess = document.getElementById('upload-success');
     
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', async function(event) {
       event.preventDefault(); // Empêche l'envoi immédiat du formulaire
 
       // Récupérer le fichier
@@ -104,37 +98,31 @@
         return;
       }
 
-      // Préparer AWS S3 pour l'upload
-      AWS.config.update({
-        accessKeyId: 'AKIATGXTDEY3RRRZ2N2E',  // Remplace par ta clé d'accès AWS
-        secretAccessKey: 'xsOwhttA016Qgdp+rb6h2jobgywTMXs2RUUFzoiM',  // Remplace par ta clé secrète AWS
-        region: 'eu-north-1'  // Remplace par ta région AWS
-      });
+      // Créer un FormData pour envoyer le fichier à l'API (upload.js backend)
+      const formData = new FormData();
+      formData.append('file', file);
 
-      const s3 = new AWS.S3();
-      const params = {
-        Bucket: 'mon-projet-iuto-bucket',  // Nom de ton bucket S3
-        Key: 'uploads/' + file.name,  // Dossier + nom du fichier
-        Body: file,
-        ContentType: file.type,
-        ACL: 'public-read'
-      };
+      try {
+        // Envoi du fichier à l'API serverless
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        });
 
-      // Upload vers S3
-      s3.upload(params, function(err, data) {
-        if (err) {
-          console.log("Erreur de téléchargement:", err);
-          alert("Erreur lors de l'upload du fichier.");
-        } else {
-          console.log("Fichier téléchargé avec succès:", data);
+        const result = await response.json();
+        if (response.ok) {
+          console.log('Fichier téléchargé avec succès !', result);
           uploadSuccess.style.display = 'block';  // Affiche le message de succès
           form.reset();  // Réinitialise le formulaire après l'upload
+        } else {
+          console.error('Erreur lors du téléchargement:', result.error);
         }
-      });
+      } catch (error) {
+        console.error('Erreur de requête:', error);
+      }
     });
   </script>
 
   <script src="../assets/js/script.js"></script>
-  <script src="../assets/js/upload.js"></script>
 </body>
 </html>
