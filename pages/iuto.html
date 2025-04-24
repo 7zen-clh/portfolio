@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../assets/css/iuto.css" />
   <link rel="stylesheet" href="../assets/css/navbar.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1265.0.min.js"></script>
 </head>
 
 <body>
@@ -70,7 +71,7 @@
     <!-- Formulaire d'upload -->
     <div class="upload-section">
       <h2>Envoyer un document</h2>
-      <form action="/api/upload" method="POST" enctype="multipart/form-data">
+      <form id="upload-form" method="POST" enctype="multipart/form-data">
         <label for="document" class="upload-label">Choisissez un fichier :</label>
         <input type="file" name="document" id="document" required />
         <button type="submit" class="upload-button">Envoyer</button>
@@ -88,19 +89,52 @@
 
   <!-- JavaScript pour gérer l'upload et la confirmation -->
   <script>
-    const form = document.querySelector('form');
+    const form = document.getElementById('upload-form');
     const uploadSuccess = document.getElementById('upload-success');
     
     form.addEventListener('submit', function(event) {
       event.preventDefault(); // Empêche l'envoi immédiat du formulaire
-      // Simulation de l'envoi de fichier
-      setTimeout(function() {
-        uploadSuccess.style.display = 'block'; // Affiche le message de succès
-        form.reset(); // Réinitialise le formulaire après l'upload
-      }, 1000); // Délai pour simuler l'envoi
+
+      // Récupérer le fichier
+      const file = document.getElementById('document').files[0];
+
+      // Vérifier si un fichier est sélectionné
+      if (!file) {
+        alert("Veuillez sélectionner un fichier.");
+        return;
+      }
+
+      // Préparer AWS S3 pour l'upload
+      AWS.config.update({
+        accessKeyId: 'AKIATGXTDEY3RRRZ2N2E',  // Remplace par ta clé d'accès AWS
+        secretAccessKey: 'xsOwhttA016Qgdp+rb6h2jobgywTMXs2RUUFzoiM',  // Remplace par ta clé secrète AWS
+        region: 'eu-north-1'  // Remplace par ta région AWS
+      });
+
+      const s3 = new AWS.S3();
+      const params = {
+        Bucket: 'mon-projet-iuto-bucket',  // Nom de ton bucket S3
+        Key: 'uploads/' + file.name,  // Dossier + nom du fichier
+        Body: file,
+        ContentType: file.type,
+        ACL: 'public-read'
+      };
+
+      // Upload vers S3
+      s3.upload(params, function(err, data) {
+        if (err) {
+          console.log("Erreur de téléchargement:", err);
+          alert("Erreur lors de l'upload du fichier.");
+        } else {
+          console.log("Fichier téléchargé avec succès:", data);
+          uploadSuccess.style.display = 'block';  // Affiche le message de succès
+          form.reset();  // Réinitialise le formulaire après l'upload
+        }
+      });
     });
   </script>
-  
+
   <script src="../assets/js/script.js"></script>
+  <script src="../assets/js/upload.js"></script>
 </body>
 </html>
