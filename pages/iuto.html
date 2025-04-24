@@ -71,7 +71,7 @@
 
         try {
           // Envoi du fichier à l'API Vercel
-          const response = await fetch('/api/upload', {
+          const response = await fetch('https://mon-portfolio.vercel.app/api/upload', {
             method: 'POST',
             body: formData
           });
