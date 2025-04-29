@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projet IUTO</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/iuto.css" />
+  <link rel="stylesheet" href="../assets/css/navbar.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1265.0.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo"><a href="../index.html">Mon Portfolio</a></div>
+      <ul class="nav-links">
+        <li><a href="../index.html" class="nav-item">Accueil</a></li>
+        <li><a href="projets.html" class="nav-item">Projets</a></li>
+        <li><a href="profil.html" class="nav-item">Profil</a></li>
+        <li><a href="parcours.html" class="nav-item">Parcours</a></li>
+        <li><a href="contact.html" class="nav-item">Contact</a></li>
+        <li><a href="iuto.html" class="nav-item active">Projet IUTO</a></li>
+      </ul>
+      <div class="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="iuto-section">
+    <h1>Projet IUTO</h1>
+    <p>Retrouvez ici l'organisation de mon projet avec les documents associés et le planning.</p>
+
+    <!-- Dossiers avec liens -->
+    <div class="folders">
+      <div class="folder">
+        <i class="fas fa-folder"></i>
+        <span>1. LAN</span>
+        <a href="../assets/pdf/iuto/1. LAN/" target="_blank">Ouvrir</a>
+      </div>
+
+      <div class="folder">
+        <i class="fas fa-folder"></i>
+        <span>2. Hyper-V</span>
+        <a href="../assets/pdf/iuto/2. Hyper -V/" target="_blank">Ouvrir</a>
+      </div>
+
+      <div class="folder">
+        <i class="fas fa-folder"></i>
+        <span>3. Stormshield</span>
+        <a href="../assets/pdf/iuto/3. Stormshield/" target="_blank">Ouvrir</a>
+      </div>
+
+      <div class="folder">
+        <i class="fas fa-trash"></i>
+        <span>Corbeille</span>
+        <a href="../assets/pdf/iuto/Corbeille" target="_blank">Ouvrir</a>
+      </div>
+
+      <div class="folder">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Planning</span>
+        <a href="../assets/pdf/iuto/Planning/planning.pdf" target="_blank">Voir</a>
+      </div>
+    </div>
+
+    <!-- Formulaire d'upload -->
+    <div class="upload-section">
+      <h2>Envoyer un document</h2>
+      <form id="upload-form" method="POST" enctype="multipart/form-data">
+        <label for="document" class="upload-label">Choisissez un fichier :</label>
+        <input type="file" name="document" id="document" required />
+        <button type="submit" class="upload-button">Envoyer</button>
+      </form>
+      <!-- Message de confirmation (affiché après l'upload) -->
+      <div id="upload-success" style="display:none;">
+        <p class="success-message">Fichier téléchargé avec succès !</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 tomc.fr | <a href="https://www.linkedin.com/in/tom-coelho-b38b97348" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
+  </footer>
+
+  <!-- JavaScript pour gérer l'upload et la confirmation -->
+  <script>
+    const form = document.getElementById('upload-form');
+    const uploadSuccess = document.getElementById('upload-success');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Empêche l'envoi immédiat du formulaire
+
+      // Récupérer le fichier
+      const file = document.getElementById('document').files[0];
+
+      // Vérifier si un fichier est sélectionné
+      if (!file) {
+        alert("Veuillez sélectionner un fichier.");
+        return;
+      }
+
+      // Préparer AWS S3 pour l'upload
+      AWS.config.update({
+        accessKeyId: 'AKIATGXTDEY3RRRZ2N2E',  // Remplace par ta clé d'accès AWS
+        secretAccessKey: 'xsOwhttA016Qgdp+rb6h2jobgywTMXs2RUUFzoiM',  // Remplace par ta clé secrète AWS
+        region: 'eu-north-1'  // Remplace par ta région AWS
+      });
+
+      const s3 = new AWS.S3();
+      const params = {
+        Bucket: 'mon-projet-iuto-bucket',  // Nom de ton bucket S3
+        Key: 'uploads/' + file.name,  // Dossier + nom du fichier
+        Body: file,
+        ContentType: file.type,
+        ACL: 'public-read'
+      };
+
+      // Upload vers S3
+      s3.upload(params, function(err, data) {
+        if (err) {
+          console.log("Erreur de téléchargement:", err);
+          alert("Erreur lors de l'upload du fichier.");
+        } else {
+          console.log("Fichier téléchargé avec succès:", data);
+          uploadSuccess.style.display = 'block';  // Affiche le message de succès
+          form.reset();  // Réinitialise le formulaire après l'upload
+        }
+      });
+    });
+  </script>
+
+  <script src="../assets/js/script.js"></script>
+  <script src="../assets/js/upload.js"></script>
+</body>
+</html>

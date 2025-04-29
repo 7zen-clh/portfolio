@@ -1,0 +1,36 @@
+GLPI est un logiciel de gestion de parc informatique qui permet de gérer et suivre les ressources matérielles, les tickets de support, les demandes d'assistance, etc. Voici un guide pour vous aider à prendre en main GLPI :
+
+1. Accès à l'interface de GLPI
+Après l'installation, vous devez accéder à GLPI via un navigateur en vous rendant sur l'URL où il est installé (par exemple, http://localhost/glpi si vous êtes en local). Vous serez redirigé vers une page de connexion où vous devrez entrer les identifiants administrateur par défaut :
+
+Utilisateur : glpi
+Mot de passe : glpi
+2. Configuration initiale
+Une fois connecté, vous pouvez configurer les premières options :
+
+Langue et fuseau horaire : Vous pouvez définir la langue et le fuseau horaire dans Configuration > Général.
+Rôles et utilisateurs : Vous pouvez créer des utilisateurs et définir des rôles dans Administration > Utilisateurs. Un rôle détermine ce qu’un utilisateur peut voir et faire dans GLPI.
+Importation de données : Vous pouvez importer les informations relatives au matériel via un fichier CSV ou utiliser l'option d'importation automatique si un annuaire (par exemple, LDAP) est utilisé.
+3. Gestion des entités
+GLPI utilise un système d’entités pour organiser l'infrastructure. Une entité représente un département, une équipe ou une zone géographique. Vous pouvez créer des entités sous Configuration > Entités.
+Une entité peut avoir ses propres utilisateurs, matériels, etc.
+4. Ajout du matériel
+Dans GLPI, vous pouvez ajouter du matériel manuellement ou via un inventaire automatique.
+Pour ajouter du matériel manuellement : Vous devez aller dans Inventaire > Matériels puis cliquer sur Ajouter. Vous pouvez y renseigner toutes les informations nécessaires (modèle, numéro de série, emplacement, etc.).
+Pour l'inventaire automatique, vous pouvez utiliser le plugin FusionInventory, qui permet de scanner le réseau pour détecter automatiquement les équipements.
+5. Création de tickets
+GLPI permet de suivre les demandes d’assistance sous forme de tickets :
+
+Pour créer un ticket, vous devez aller dans Assistance > Tickets et cliquer sur Ajouter. Vous pouvez choisir le type de demande (incident, demande de service, etc.).
+Un ticket peut être affecté à un technicien et suivre plusieurs étapes jusqu'à sa résolution.
+6. Suivi et gestion des tickets
+Une fois créés, les tickets peuvent être suivis par les techniciens. Ceux-ci peuvent ajouter des notes, changer le statut (en cours, résolu, fermé), et attribuer des priorités.
+Vous pouvez également créer des rapports sur les tickets pour suivre les statistiques (par exemple, le nombre de tickets résolus dans un délai donné).
+7. Plugins
+GLPI dispose de nombreux plugins qui étendent ses fonctionnalités. Vous pouvez aller dans Plugins pour installer de nouveaux plugins. Par exemple :
+
+FusionInventory pour l'inventaire automatique.
+Dashboard pour personnaliser le tableau de bord.
+Project pour gérer des projets.
+8. Maintenance et sauvegarde
+Il est important de configurer des sauvegardes régulières pour GLPI (base de données et fichiers de configuration). Vous pouvez utiliser des outils comme mysqldump pour sauvegarder la base de données.

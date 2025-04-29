@@ -1,0 +1,138 @@
+JAVA.21
+POSTGRESQL
+
+keycloak 24.0.5
+
+su - postgres -c "createuser keycloak --pwprompt"
+su - postgres -c "createdb keycloak2 --encoding=utf-8 --owner=keycloak"
+
+
+root@SRV-KYC:/opt/keycloak/bin# cat ../conf/keycloak.conf
+# Basic settings for running in production. Change accordingly before deploying the server.
+
+# Database
+
+# The database vendor.
+db=postgres
+
+# The username of the database user.
+db-username=keycloak
+
+# The password of the database user.
+db-password=Azerty45
+
+# The full database JDBC URL. If not provided, a default URL is set based on the selected database vendor.
+db-url=jdbc:postgresql://localhost/keycloak2
+
+# Observability
+
+# If the server should expose healthcheck endpoints.
+#health-enabled=true
+
+# If the server should expose metrics endpoints.
+#metrics-enabled=true
+
+# HTTP
+
+# The file path to a server certificate or certificate chain in PEM format.
+#https-certificate-file=${kc.home.dir}conf/server.crt.pem
+
+# The file path to a private key in PEM format.
+#https-certificate-key-file=${kc.home.dir}conf/server.key.pem
+
+# The proxy address forwarding mode if the server is behind a reverse proxy.
+#proxy=reencrypt
+
+# Do not attach route to cookies and rely on the session affinity capabilities from reverse proxy
+#spi-sticky-session-encoder-infinispan-should-attach-route=false
+
+# Hostname for the Keycloak server.
+#hostname=10.254.254.170
+
+cd /opt/keycloak/bin/
+./kc.sh start-dev
+
+
+
+
+
+
+
+
+
+
+
+
+   59	wget https://github.com/keycloak/keycloak/releases/download/24.0.5/keycloak-24.0.5.zip
+   60  cd /opt/
+   61  cd /opt/
+   62  unzip /root/keycloak-24.0.5.zip
+   63  apt install unzip
+   64  unzip /root/keycloak-24.0.5.zip
+   65  mv keycloak-24.0.5/ keycloak
+   66  cd keycloak/
+   67  ll
+   68  ls -al
+   69  sh -c 'echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+   70  apt update
+   71  curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+   72  apt install curl ca-certificates
+   73  install -d /usr/share/postgresql-common/pgdg
+   74  curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+   75  apt update
+   76  apt -y install postgresql
+   77  su - postges
+   78  su - postgres
+   79  cd conf/
+   80  ls
+   81  nano keycloak.conf
+   82  nano keycloak.conf
+   83  apt install openjdk-17-jre
+   84  cd ..
+   85  ll
+   86  cd bin/
+   87  ls
+   88  sh kc.sh
+   89  sh kc.sh start
+   90  ls
+   91  nano ../conf/keycloak.conf
+   92  sh kc.sh start
+   93  sh kc.sh start-dev
+   94  nano ../conf/keycloak.conf
+   95  sh kc.sh start-dev
+   96  nano ../conf/keycloak.conf
+   97  sh kc.sh start-dev
+   98  sudo -u postgres psql
+su - postgres
+  128  sh kc.sh start-dev
+  129  cd /home/
+  130  ls
+  131  cd sio/
+  132  cd /opt/keycloak/conf/
+  133  nano keycloak.conf
+  134  sudo -u postgres psql
+  135  su - postgre -c "creatuser keycloak --pwprompt"
+  136  su - postgres -c "creatuser keycloak --pwprompt"
+  137  su - postgres -c "createuser keycloak --pwprompt"
+  138  su - postgres -c "createdb keycloak --pwprompt"
+  139  su - postgres -c "createdb keycloak --enconding=utf-8 --owner=keycloak"
+  140  su - postgres -c "createdb keycloak --encoding=utf-8 --owner=keycloak"
+  141  sudo -u postgres psql
+  142  psql -U keycloak_user -d keycloak
+  143  su - postgres -c "createdb keycloak2 --encoding=utf-8 --owner=keycloak"
+  144  nano keycloak.conf
+  145  cd ../bin/
+  146  sh kc.sh build
+  147  sh kc.sh start-dev
+  148  EXPORT keycloak_admin=admin && export keycloak_admin_password=admin && sh kc.sh start-dev
+  149  export keycloak_admin=admin && export keycloak_admin_password=admin && sh kc.sh start-dev
+  150  export KEYCLOAK_ADMIN=admin && export KEYCLOAK_ADMIN_PASSWORD=admin && sh kc.sh start-dev
+  151  history
+  152  cat ../conf/keycloak.conf
+  153  history
+
+
+
+
+
+

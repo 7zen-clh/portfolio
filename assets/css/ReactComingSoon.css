@@ -1,0 +1,29 @@
+/* src/ReactComingSoon.css */
+.coming-soon-container {
+  text-align: center;
+  padding: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.coming-soon-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.coming-soon-header p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+footer {
+  margin-top: 30px;
+}
+
+footer p {
+  font-size: 1rem;
+}
+
+footer a {
+  color: #1e90ff;
+  text-decoration: none;
+}
